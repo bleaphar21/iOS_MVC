@@ -16,22 +16,25 @@ class ViewController: UIViewController {
     //TODO : Modify the functions below to use the quizzy object's properties and methods instead of the array values
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = questions[currentQuestionIndex] //The questions array has been moved to the quiz class, use the quizzy reference to access it
+       // questionLabel.text = questions[currentQuestionIndex] //The questions array has been moved to the quiz class, use the quizzy reference to access it
+        questionLabel.text = quizzy.question(number: currentQuestionIndex)
     }
     
     @IBAction func showNextQuestion(_ sender: UIButton) {
         currentQuestionIndex += 1
-        if currentQuestionIndex == questions.count { //The quiz class has a computed property for the number of questions
+        if currentQuestionIndex == quizzy.count { //The quiz class has a computed property for the number of questions
             currentQuestionIndex = 0
         }
         
-        let question: String = questions[currentQuestionIndex]
+        let question: String = quizzy.question(number: currentQuestionIndex)
+            //questions[currentQuestionIndex]
         questionLabel.text = question
         answerLabel.text = "???"
     }
     
     @IBAction func showAnswer(_ sender: UIButton) {
-        let answer: String = answers[currentQuestionIndex] //The answers array has been moved to the quiz class, use the quizzy reference to access it
+        let answer: String = quizzy.answer(number: currentQuestionIndex)
+            //answers[currentQuestionIndex] //The answers array has been moved to the quiz class, use the quizzy reference to access it
         answerLabel.text = answer
     }
 
